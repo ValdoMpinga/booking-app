@@ -40,9 +40,7 @@ func main() {
 
 		fmt.Println()
 
-		fmt.Println("Enter the amount of tickets")
-		fmt.Scan(&userTickets)
-		fmt.Println()
+		setTicket(&userTickets, remainingTickets)
 
 		remainingTickets = remainingTickets - userTickets
 		bookings = append(bookings, firstName+" "+lastName)
@@ -60,6 +58,26 @@ func main() {
 
 		fmt.Printf("Booking first names: %v\n", firstNames)
 
+		if remainingTickets == 0 {
+			fmt.Println("Our conference has no tickets left, until next year!")
+			break
+		}
+	}
+}
+
+func setTicket(ticketAmount *uint8, remainingTickets uint8) {
+	var userInput uint8
+
+	fmt.Println("Enter the amount of tickets")
+	fmt.Scan(&userInput)
+	fmt.Println()
+
+	if userInput > remainingTickets {
+		fmt.Printf("There are only %v tickets available, please insert a valid amount.\n", remainingTickets)
+
+		setTicket(ticketAmount, remainingTickets)
+	} else {
+		*ticketAmount = userInput
 	}
 
 }
