@@ -46,3 +46,13 @@ We can also do for <condition> {
 } //this is like a do-while writtin in for loop lmao
 
 a while equivalent would be for { //code } or for true{ //code }
+
+* Package level variables
+
+In Go, we can declare variables that are accessible through files whitin a package to make the code cleaner.
+- They are defined at the top outside all functions
+- They can only be declared using the var keyword
+
+PS: the best practice is to define a var locally as possible!!!
+
+
