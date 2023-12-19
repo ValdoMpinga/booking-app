@@ -46,31 +46,56 @@ func main() {
 		var isValidName bool = len(firstName) >= 2 && len(lastName) >= 2 && len(email) >= 2
 		var isValidEmail bool = strings.Contains(email, "@")
 		var isValidTicketNumber bool = userTickets > 0 && userTickets <= remainingTickets
-		
+
 		if isValidName && isValidEmail && isValidTicketNumber {
-		remainingTickets = remainingTickets - userTickets
-		bookings = append(bookings, firstName+" "+lastName)
+			remainingTickets = remainingTickets - userTickets
+			bookings = append(bookings, firstName+" "+lastName)
 
-		fmt.Printf("Thank you %v %v for bookin %v tickets. You will receive a confirmation email at %v\n", firstName, lastName, userTickets, email)
-		fmt.Printf("%v tickets remaining\n", remainingTickets)
+			fmt.Printf("Thank you %v %v for bookin %v tickets. You will receive a confirmation email at %v\n", firstName, lastName, userTickets, email)
+			fmt.Printf("%v tickets remaining\n", remainingTickets)
 
-		firstNames := []string{}
+			firstNames := []string{}
 
-		for _, booking := range bookings {
-			names := strings.Fields(booking) // splits the string with white spaces as separator
-			firstNames = append(firstNames, names[0])
+			for _, booking := range bookings {
+				names := strings.Fields(booking) // splits the string with white spaces as separator
+				firstNames = append(firstNames, names[0])
 
+			}
+
+			fmt.Printf("Booking first names: %v\n", firstNames)
+
+			if remainingTickets == 0 {
+				fmt.Println("Our conference has no tickets left, until next year!")
+				break
+			}
+		} else {
+			if !isValidName {
+				fmt.Println("first name or last name you entered is too short")
+			}
+			if isValidEmail {
+				fmt.Println("email address you entered doesn't contain @ sign")
+			}
+			if !isValidTicketNumber {
+				fmt.Println("number of tickets you entered is invalid")
+			}
 		}
-
-		fmt.Printf("Booking first names: %v\n", firstNames)
-
-		if remainingTickets == 0 {
-			fmt.Println("Our conference has no tickets left, until next year!")
-			break
-		}
-	}else{
-		fmt.Println("Your input data is invalid, try again")
 	}
+
+	city := "Londo"
+
+	switch city{
+		case: "New York":
+			//run code for book in New York
+		case: "Singapore":
+			//run code for book in Singapore
+		case: "London", "Berlin":
+			//run code for book in London and Berlin
+		case: "Mexico City":
+			//run code for book in Mexico City
+		case "Hong Kong":
+			//run code for book in Hong Kong
+		default:
+			fmt.Printf("No valid city specified for booking!")
 	}
 }
 
