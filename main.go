@@ -40,8 +40,14 @@ func main() {
 
 		fmt.Println()
 
+		//Handles validation for the user tickets input
 		setTicket(&userTickets, remainingTickets)
 
+		var isValidName bool = len(firstName) >= 2 && len(lastName) >= 2 && len(email) >= 2
+		var isValidEmail bool = strings.Contains(email, "@")
+		var isValidTicketNumber bool = userTickets > 0 && userTickets <= remainingTickets
+		
+		if isValidName && isValidEmail && isValidTicketNumber {
 		remainingTickets = remainingTickets - userTickets
 		bookings = append(bookings, firstName+" "+lastName)
 
@@ -62,6 +68,9 @@ func main() {
 			fmt.Println("Our conference has no tickets left, until next year!")
 			break
 		}
+	}else{
+		fmt.Println("Your input data is invalid, try again")
+	}
 	}
 }
 
