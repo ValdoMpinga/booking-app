@@ -55,4 +55,8 @@ In Go, we can declare variables that are accessible through files whitin a packa
 
 PS: the best practice is to define a var locally as possible!!!
 
+* Go Packages
 
+In Go we can create packages to organize better the code. After creating a file we must tell to which package the file belongs to.
+
+We can create multiple packages in Go, if we have multiple packages, its ideal to create a folders for each packages, to import a package, we should use <app module name in go.mod>/<module name>. Also the functions which must be accessible outside the package must exported, to do so, we only need to capitalize the first letter on the function.
