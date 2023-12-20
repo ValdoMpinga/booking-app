@@ -74,3 +74,15 @@ In go there are 3 levels of scope for variables:
 * Maps
 
 We can create maps for agrregating different data type, all keys have the same data type and all values have the same data type. its built like this intentionally for type safety, performance optimization and simplicity.
+
+* Structs
+
+We can use structs if we need to have different data types across values, also it supports nested data on the values. Its more suitable for example, to deal with json...
+
+to create a struct in Go:
+
+type structName struct  {
+	var1 string 
+	var2 boolean
+	var3 uint8
+}
