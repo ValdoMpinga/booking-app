@@ -1,88 +1,124 @@
-- GO
+Absolutely, I'll enhance your notes in Markdown format. Here's the improved version:
 
-Go also know for Golang, was created by Google in 2007, its open source and kinda new.
+# Go (Golang) Crash Course
 
-- Go was designed to run on multiple cores and build support concurrency
-- Concurrency in Go is cheap and easy
+Go, also known as Golang, was created by Google in 2007. It is open source and designed for efficiency, especially in concurrent programming.
 
-The main use case of Go is for peromrant apps.
+## Introduction
 
-- Getting started
+- Go was developed to run on multiple cores and has built-in support for concurrency.
+- Concurrency in Go is both cheap and easy.
+
+## Main Use Case
+
+The primary use case for Go is performance-oriented applications.
+
+## Getting Started
+
+To initialize a Go module, use the following command:
 
 ```bash
 go mod init my-app
 ```
 
-it describes the module: name/module path and go version used in the program
+This command describes the module, including the name/module path and the Go version used in the program.
 
-All the code must belong to a package
+- All code must belong to a package, and the main package is indicated by `package main` at the beginning of the code.
+- Unused variables in Go will result in an error.
 
-package main // in the first line of the code.
+## Slices in Go
 
-In go, if you declare a variable and dont use it youll get an error
+A slice in Go is an abstraction of an array with a dynamic size. To declare and append to a slice:
 
-- Slices in Go
+```go
+var bookings []string // Declaration
+bookings = append(bookings, firstName+" "+lastName) // Appending
+```
 
-Slice is an abstraction of an Array, which has a dynamic size, you declare it with an array withou a size , like this:
+## Loops
 
-var bookings []string //declaration
-bookings = append(bookings, firstName+" "+lastName) // to append
+In Go, there is only a `for` loop, but it can be used for various loop constructs.
 
-- Loops
+### For-Each Loop
 
-In Go, there is only for loop, normal for, for each..., game is game.
-
-for each loop in Go
-
-for \_, booking := range bookings {
-names := strings.Fields(booking) // splits the string with white spaces as separator
-firstNames = append(firstNames, names[0])
+```go
+for _, booking := range bookings {
+    names := strings.Fields(booking) // Splits the string with white spaces as a separator
+    firstNames = append(firstNames, names[0])
 }
+```
 
-in Go, \_ (underscore) are used to identify unused variables.
+In Go, the underscore `_` is used to identify unused variables.
 
-We can also do for <condition> {
+### While Loop Equivalent
 
-} //this is like a do-while writtin in for loop lmao
-
-a while equivalent would be for { //code } or for true{ //code }
-
-- Package level variables
-
-In Go, we can declare variables that are accessible through files whitin a package to make the code cleaner.
-
-- They are defined at the top outside all functions
-- They can only be declared using the var keyword
-
-PS: the best practice is to define a var locally as possible!!!
-
-- Go Packages
-
-In Go we can create packages to organize better the code. After creating a file we must tell to which package the file belongs to.
-
-We can create multiple packages in Go, if we have multiple packages, its ideal to create a folders for each packages, to import a package, we should use <app module name in go.mod>/<module name>. Also the functions which must be accessible outside the package must exported, to do so, we only need to capitalize the first letter on the function.
-
-* Variables scopes in Go
-
-In go there are 3 levels of scope for variables:
-
-- Global - accessible in the all app, to create so, we declare it with the first letter capitalized.
-- Package - accessible in a package
-- Local - accessible in a scope, like a function.
-
-
-* Maps
-
-We can create maps for agrregating different data type, all keys have the same data type and all values have the same data type. its built like this intentionally for type safety, performance optimization and simplicity.
-
-* Structs
-
-We can use structs if we need to have different data types across values, also it supports nested data on the values. Its more suitable for example, to deal with json...
-
-to create a struct in Go:
-
-type structName struct  {
-	var1 string 
-	var2 boolean
-	var3 uint8
+```go
+for <condition> {
+    // Code
 }
+```
+
+Or
+
+```go
+for {
+    // Code
+}
+```
+
+### Package Level Variables
+
+In Go, package-level variables are defined at the top outside all functions. They can only be declared using the `var` keyword. It is a best practice to define variables as locally as possible.
+
+## Go Packages
+
+Go allows the creation of packages to organize code better. To import a package, use `<app module name in go.mod>/<module name>`. Exported functions must have the first letter capitalized.
+
+## Variable Scopes in Go
+
+In Go, variables have three levels of scope:
+
+- Global: Accessible throughout the entire application.
+- Package: Accessible within a package.
+- Local: Accessible within a specific scope, such as a function.
+
+## Maps
+
+Maps in Go aggregate data with keys and values of the same data type for type safety, performance optimization, and simplicity.
+
+## Structs
+
+Structs are useful when dealing with different data types across values or nested data. They are particularly suitable for handling JSON.
+
+To create a struct in Go:
+
+```go
+type StructName struct {
+    Var1 string
+    Var2 bool
+    Var3 uint8
+}
+```
+
+## Concurrency
+
+Concurrency in Go allows code to run without blocking the main thread. Goroutines can be used to execute functions concurrently.
+
+To make a function concurrent:
+
+```go
+go myFunction()
+```
+
+By default, the main goroutine does not wait for other goroutines to finish. To address this, use a `sync.WaitGroup` to make the main goroutine wait for others to finish.
+
+### Concurrency in Go vs Other Languages
+
+- Writing concurrent code in other languages is more complex and has more overhead.
+
+### Threads vs Goroutines
+
+- Creating threads is more expensive and has a slow startup time.
+- Goroutines in Go are lightweight and efficient, allowing the creation of thousands rapidly.
+
+Go uses green threads, abstractions of actual threads, making communication between them easy through channels.
