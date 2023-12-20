@@ -3,7 +3,7 @@ package main
 import (
 	"booking-app/helper"
 	"fmt"
-	"strings"
+	"strconv"
 )
 
 var conferenceName string = "Go conference"
@@ -11,7 +11,7 @@ var conferenceName string = "Go conference"
 const conferenceTickets uint8 = 50
 
 var remainingTickets uint8 = 50
-var bookings []string
+var bookings = make([]map[string]string,0)
 
 func main() {
 
@@ -100,7 +100,18 @@ func setTicket(ticketAmount *uint8, remainingTickets uint8) {
 
 func bookTicket(userTickets uint8, firstName, lastName, email string) {
 	remainingTickets = remainingTickets - userTickets
-	bookings = append(bookings, firstName+" "+lastName)
+
+	//create a map for a user
+	var userData = make(map[string]string)
+
+	userData["firstName"] = firstName
+	userData["lastName"] = lastName
+	userData["email"] = email
+	userData["numberOfTickets"] = strconv.Itoa(int(userTickets))
+
+	bookings = append(bookings, userData)
+
+	fmt.Printf("List of bookings %v \n\n",bookings)
 
 	fmt.Printf("Thank you %v %v for bookin %v tickets. You will receive a confirmation email at %v\n", firstName, lastName, userTickets, email)
 	fmt.Printf("%v tickets remaining for %v\n", remainingTickets, conferenceName)
@@ -110,8 +121,7 @@ func getFirstNames() []string {
 	firstNames := []string{}
 
 	for _, booking := range bookings {
-		names := strings.Fields(booking) // splits the string with white spaces as separator
-		firstNames = append(firstNames, names[0])
+		firstNames = append(firstNames,booking["firstName"])
 
 	}
 	return firstNames
